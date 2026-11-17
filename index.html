@@ -127,6 +127,9 @@ h1 em svg{position:absolute;left:0;right:0;bottom:-.18em;width:100%;height:.32em
 .answers .row{display:flex;justify-content:center;align-items:center;gap:8px;width:100%}
 .likes{display:flex;align-items:center;gap:8px;margin:12px 4px 0;padding-top:12px;border-top:1px solid #FFE6EE;font-size:.82rem;color:var(--encre-2)}
 .likes svg{width:18px;height:18px}
+.heart.long{--fs:.84rem}
+.heart.long span{max-width:72%;margin-top:-15%}
+.q.xs{font-size:clamp(1.5rem,6.6vw,1.85rem);line-height:1.1}
 
 /* ---------- bulles de discussion ---------- */
 .replies{display:grid;gap:8px;margin-top:14px}
@@ -178,7 +181,9 @@ h1 em svg{position:absolute;left:0;right:0;bottom:-.18em;width:100%;height:.32em
   transition:transform .5s cubic-bezier(.3,1.4,.5,1);background:#fff;border-radius:24px;padding:16px 18px 14px;box-shadow:0 20px 50px -12px rgba(90,6,26,.55);border:2px solid var(--rose-2);display:flex;gap:12px;align-items:center}
 .sheet.on{transform:translate(-50%,0)}
 .sheet .h{flex:none;width:44px;height:41px}
+.sheet .from{display:block;margin:0 0 3px;font:800 .66rem/1.2 var(--text);letter-spacing:.12em;text-transform:uppercase;color:var(--encre-2)}
 .sheet p{margin:0;font:700 1.55rem/1.1 var(--main);color:var(--rouge)}
+.sheet small:empty{display:none}
 .sheet small{display:block;font:700 .82rem/1.3 var(--text);color:var(--encre-2);margin-top:3px}
 
 /* ---------- résultat ---------- */
@@ -233,7 +238,7 @@ h1 em svg{position:absolute;left:0;right:0;bottom:-.18em;width:100%;height:.32em
    <svg viewBox="0 0 100 92" aria-hidden="true"><path fill="url(#g-red)" d="M50 88C22 66 4 50 4 28 4 13 15 3 29 3c10 0 17 6 21 14 4-8 11-14 21-14 14 0 25 10 25 25 0 22-18 38-46 60z"/></svg>
   </button>
  </header>
- <div class="stories" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+ <div class="stories" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
 
  <main>
   <!-- 0 · Accueil -->
@@ -259,7 +264,7 @@ h1 em svg{position:absolute;left:0;right:0;bottom:-.18em;width:100%;height:.32em
   <!-- 1 · Question 1 -->
   <section class="screen" id="s1" aria-labelledby="t1">
    <article class="post">
-    <div class="post-head"><span class="av sm" aria-hidden="true">S</span><div><b>Sophia</b><span>à l'instant</span></div><span class="chip">Question 1/2</span></div>
+    <div class="post-head"><span class="av sm" aria-hidden="true">S</span><div><b>Sophia</b><span>à l'instant</span></div><span class="chip">Question 1/7</span></div>
     <h2 class="q" id="t1">Tu m'aimes&nbsp;?</h2>
     <p class="q-hint">Une seule bonne réponse, Kimo. Aucune pression.</p>
     <div class="answers">
@@ -283,7 +288,7 @@ h1 em svg{position:absolute;left:0;right:0;bottom:-.18em;width:100%;height:.32em
   <!-- 2 · Question 2 -->
   <section class="screen" id="s2" aria-labelledby="t2">
    <article class="post">
-    <div class="post-head"><span class="av sm" aria-hidden="true">S</span><div><b>Sophia</b><span>à l'instant</span></div><span class="chip">Question 2/2</span></div>
+    <div class="post-head"><span class="av sm" aria-hidden="true">S</span><div><b>Sophia</b><span>à l'instant</span></div><span class="chip">Question 2/7</span></div>
     <h2 class="q small" id="t2">Sais-tu qu'elle t'aime beaucoup, elle aussi&nbsp;?</h2>
     <p class="q-hint">Réfléchis avant de répondre, Kimo (ou pas).</p>
     <div class="answers">
@@ -299,15 +304,147 @@ h1 em svg{position:absolute;left:0;right:0;bottom:-.18em;width:100%;height:.32em
      </div>
     </div>
     <div class="replies" id="r2" aria-live="polite"></div>
-    <div class="next" id="to-end" hidden><button class="pill" type="button" id="go-end"><svg viewBox="0 0 100 92" aria-hidden="true"><use href="#hp" fill="#fff"/></svg>Voir mon résultat</button></div>
+    <div class="next" id="to-end" hidden><button class="pill" type="button" id="go-end"><svg viewBox="0 0 100 92" aria-hidden="true"><use href="#hp" fill="#fff"/></svg>Question suivante</button></div>
    </article>
   </section>
 
-  <!-- 3 · Résultat -->
-  <section class="screen" id="s3" aria-labelledby="t3">
+  <!--
+    3 à 7 · Questions bonus.
+    Pour modifier un texte : data-notif = la notification mignonne du cœur,
+    data-alarm + data-sub = l'alerte rouge du bouton « non », data-ok = le bouton de l'alerte,
+    data-emoji (sur la section) = l'emoji qui part avec les confettis.
+  -->
+
+  <!-- 3 · Question 3 (drôle) -->
+  <section class="screen quiz" id="s3" aria-labelledby="t3" data-emoji="👑">
+   <article class="post">
+    <div class="post-head"><span class="av sm" aria-hidden="true">S</span><div><b>Sophia</b><span>à l'instant</span></div><span class="chip">Question 3/7</span></div>
+    <h2 class="q small" id="t3">Qui a toujours raison quand on n'est pas d'accord&nbsp;?</h2>
+    <p class="q-hint">Sois très honnête avec toi-même.</p>
+    <div class="answers">
+     <div class="row">
+      <button class="heart lg beat long" type="button" data-notif="Bonne réponse, tu connais déjà les règles par cœur 😘">
+       <svg viewBox="0 0 100 92" aria-hidden="true"><path class="h-fill" fill="url(#g-red)" d="M50 88C22 66 4 50 4 28 4 13 15 3 29 3c10 0 17 6 21 14 4-8 11-14 21-14 14 0 25 10 25 25 0 22-18 38-46 60z"/><ellipse cx="27" cy="21" rx="12" ry="7" transform="rotate(-28 27 21)" fill="#fff" opacity=".42"/><circle cx="16" cy="33" r="2.6" fill="#fff" opacity=".55"/></svg>
+       <span>Toi (Sophia)</span>
+      </button>
+      <button class="heart lg pink long" type="button" data-notif="Voilà un homme intelligent qui tient à sa tranquillité 💕">
+       <svg viewBox="0 0 100 92" aria-hidden="true"><path class="h-fill" fill="url(#g-pink)" d="M50 88C22 66 4 50 4 28 4 13 15 3 29 3c10 0 17 6 21 14 4-8 11-14 21-14 14 0 25 10 25 25 0 22-18 38-46 60z"/><ellipse cx="27" cy="21" rx="12" ry="7" transform="rotate(-28 27 21)" fill="#fff" opacity=".6"/></svg>
+       <span>Toi, même quand tu as tort</span>
+      </button>
+     </div>
+     <button class="no" type="button" data-ico="🤖" data-alarm="BUG SYSTÈME." data-sub="Cette option n'existe pas dans la base de données." data-ok="Pardon, c'est toi qui as raison"><svg viewBox="0 0 100 92" aria-hidden="true"><path fill="#E9A9BC" d="M50 88C22 66 4 50 4 28 4 13 15 3 29 3c10 0 17 6 21 14l-8 16 12 10-8 14 10 8-6 11z"/><path fill="#E9A9BC" d="M56 86l5-11-9-8 8-14-11-10 8-15c5-6 10-9 15-9 14 0 25 10 25 25 0 22-17 36-41 62z"/></svg><span>Moi (Kimo)</span></button>
+    </div>
+    <div class="replies" aria-live="polite"></div>
+    <div class="next" hidden><button class="pill" type="button"><svg viewBox="0 0 100 92" aria-hidden="true"><use href="#hp" fill="#fff"/></svg>Question suivante</button></div>
+    <div class="likes"><svg viewBox="0 0 100 92" aria-hidden="true"><use href="#hp" fill="url(#g-red)"/></svg><span>Aimé par Sophia (qui a raison, comme d'habitude)</span></div>
+   </article>
+  </section>
+
+  <!-- 4 · Question 4 (sexy) -->
+  <section class="screen quiz" id="s4" aria-labelledby="t4" data-emoji="🔥">
+   <article class="post">
+    <div class="post-head"><span class="av sm" aria-hidden="true">S</span><div><b>Sophia</b><span>à l'instant</span></div><span class="chip">Question 4/7 🔥</span></div>
+    <h2 class="q xs" id="t4">On a 1&nbsp;heure seuls sans téléphone dès qu'on se voit&nbsp;: on commence par quoi&nbsp;?</h2>
+    <p class="q-hint">Pas le droit de dire «&nbsp;dormir&nbsp;».</p>
+    <div class="answers">
+     <div class="row">
+      <button class="heart lg beat long" type="button" data-notif="J'espère que tes mains sont prêtes alors… 🔥">
+       <svg viewBox="0 0 100 92" aria-hidden="true"><path class="h-fill" fill="url(#g-red)" d="M50 88C22 66 4 50 4 28 4 13 15 3 29 3c10 0 17 6 21 14 4-8 11-14 21-14 14 0 25 10 25 25 0 22-18 38-46 60z"/><ellipse cx="27" cy="21" rx="12" ry="7" transform="rotate(-28 27 21)" fill="#fff" opacity=".42"/><circle cx="16" cy="33" r="2.6" fill="#fff" opacity=".55"/></svg>
+       <span>Un massage qui dérape très vite</span>
+      </button>
+      <button class="heart lg pink long" type="button" data-notif="Le programme parfait, j'ai déjà hâte 😍">
+       <svg viewBox="0 0 100 92" aria-hidden="true"><path class="h-fill" fill="url(#g-pink)" d="M50 88C22 66 4 50 4 28 4 13 15 3 29 3c10 0 17 6 21 14 4-8 11-14 21-14 14 0 25 10 25 25 0 22-18 38-46 60z"/><ellipse cx="27" cy="21" rx="12" ry="7" transform="rotate(-28 27 21)" fill="#fff" opacity=".6"/></svg>
+       <span>T'embrasser jusqu'à oublier l'heure</span>
+      </button>
+     </div>
+     <button class="no" type="button" data-ico="📺" data-alarm="REJETÉ." data-sub="Mauvaise réponse, recommence avec plus d'imagination." data-ok="Ok, j'ai plus d'imagination"><svg viewBox="0 0 100 92" aria-hidden="true"><path fill="#E9A9BC" d="M50 88C22 66 4 50 4 28 4 13 15 3 29 3c10 0 17 6 21 14l-8 16 12 10-8 14 10 8-6 11z"/><path fill="#E9A9BC" d="M56 86l5-11-9-8 8-14-11-10 8-15c5-6 10-9 15-9 14 0 25 10 25 25 0 22-17 36-41 62z"/></svg><span>On regarde un documentaire Arte</span></button>
+    </div>
+    <div class="replies" aria-live="polite"></div>
+    <div class="next" hidden><button class="pill" type="button"><svg viewBox="0 0 100 92" aria-hidden="true"><use href="#hp" fill="#fff"/></svg>Question suivante</button></div>
+    <div class="likes"><svg viewBox="0 0 100 92" aria-hidden="true"><use href="#hp" fill="url(#g-red)"/></svg><span>Vu par Sophia · contenu strictement réservé à Kimo</span></div>
+   </article>
+  </section>
+
+  <!-- 5 · Question 5 (drôle) -->
+  <section class="screen quiz" id="s5" aria-labelledby="t5" data-emoji="🍔">
+   <article class="post">
+    <div class="post-head"><span class="av sm" aria-hidden="true">S</span><div><b>Sophia</b><span>à l'instant</span></div><span class="chip">Question 5/7</span></div>
+    <h2 class="q xs" id="t5">Tu jures de toujours me laisser la meilleure bouchée de ton assiette&nbsp;?</h2>
+    <p class="q-hint">C'est écrit en tout petit dans le contrat.</p>
+    <div class="answers">
+     <div class="row">
+      <button class="heart lg beat long" type="button" data-notif="Ça, c'est le vrai amour. Contrat validé ! 🍔❤️">
+       <svg viewBox="0 0 100 92" aria-hidden="true"><path class="h-fill" fill="url(#g-red)" d="M50 88C22 66 4 50 4 28 4 13 15 3 29 3c10 0 17 6 21 14 4-8 11-14 21-14 14 0 25 10 25 25 0 22-18 38-46 60z"/><ellipse cx="27" cy="21" rx="12" ry="7" transform="rotate(-28 27 21)" fill="#fff" opacity=".42"/><circle cx="16" cy="33" r="2.6" fill="#fff" opacity=".55"/></svg>
+       <span>Oui, le milieu du burger est à toi</span>
+      </button>
+      <button class="heart lg pink long" type="button" data-notif="Tu marques énormément de points là 🥺💕">
+       <svg viewBox="0 0 100 92" aria-hidden="true"><path class="h-fill" fill="url(#g-pink)" d="M50 88C22 66 4 50 4 28 4 13 15 3 29 3c10 0 17 6 21 14 4-8 11-14 21-14 14 0 25 10 25 25 0 22-18 38-46 60z"/><ellipse cx="27" cy="21" rx="12" ry="7" transform="rotate(-28 27 21)" fill="#fff" opacity=".6"/></svg>
+       <span>Évidemment, je te nourris avant moi</span>
+      </button>
+     </div>
+     <button class="no" type="button" data-ico="🧾" data-alarm="RADIN DÉTECTÉ." data-sub="Accès au reste du questionnaire bloqué jusqu'à correction." data-ok="Pardon, je partage tout"><svg viewBox="0 0 100 92" aria-hidden="true"><path fill="#E9A9BC" d="M50 88C22 66 4 50 4 28 4 13 15 3 29 3c10 0 17 6 21 14l-8 16 12 10-8 14 10 8-6 11z"/><path fill="#E9A9BC" d="M56 86l5-11-9-8 8-14-11-10 8-15c5-6 10-9 15-9 14 0 25 10 25 25 0 22-17 36-41 62z"/></svg><span>Chacun sa part</span></button>
+    </div>
+    <div class="replies" aria-live="polite"></div>
+    <div class="next" hidden><button class="pill" type="button"><svg viewBox="0 0 100 92" aria-hidden="true"><use href="#hp" fill="#fff"/></svg>Question suivante</button></div>
+    <div class="likes"><svg viewBox="0 0 100 92" aria-hidden="true"><use href="#hp" fill="url(#g-red)"/></svg><span>Contrat d'amour, article 12, alinéa burger</span></div>
+   </article>
+  </section>
+
+  <!-- 6 · Question 6 (sexy) -->
+  <section class="screen quiz" id="s6" aria-labelledby="t6" data-emoji="💋">
+   <article class="post">
+    <div class="post-head"><span class="av sm" aria-hidden="true">S</span><div><b>Sophia</b><span>à l'instant</span></div><span class="chip">Question 6/7 🔥</span></div>
+    <h2 class="q xs" id="t6">Qui va demander grâce en premier la prochaine fois qu'on dort ensemble&nbsp;?</h2>
+    <p class="q-hint">Interdiction de bluffer.</p>
+    <div class="answers">
+     <div class="row">
+      <button class="heart lg beat long" type="button" data-notif="C'est noté, prépare-toi à ne pas fermer l'œil de la nuit 😏🔥">
+       <svg viewBox="0 0 100 92" aria-hidden="true"><path class="h-fill" fill="url(#g-red)" d="M50 88C22 66 4 50 4 28 4 13 15 3 29 3c10 0 17 6 21 14 4-8 11-14 21-14 14 0 25 10 25 25 0 22-18 38-46 60z"/><ellipse cx="27" cy="21" rx="12" ry="7" transform="rotate(-28 27 21)" fill="#fff" opacity=".42"/><circle cx="16" cy="33" r="2.6" fill="#fff" opacity=".55"/></svg>
+       <span>Moi, mais je ne vais pas te laisser dormir</span>
+      </button>
+      <button class="heart lg pink long" type="button" data-notif="On verra bien qui tiendra le plus longtemps… 😉❤️">
+       <svg viewBox="0 0 100 92" aria-hidden="true"><path class="h-fill" fill="url(#g-pink)" d="M50 88C22 66 4 50 4 28 4 13 15 3 29 3c10 0 17 6 21 14 4-8 11-14 21-14 14 0 25 10 25 25 0 22-18 38-46 60z"/><ellipse cx="27" cy="21" rx="12" ry="7" transform="rotate(-28 27 21)" fill="#fff" opacity=".6"/></svg>
+       <span>Toi, parce que j'ai trop d'énergie à rattraper</span>
+      </button>
+     </div>
+     <button class="no" type="button" data-ico="😴" data-alarm="IMPOSSIBLE." data-sub="Le quota de câlins en retard est beaucoup trop élevé." data-ok="Je retire, promis"><svg viewBox="0 0 100 92" aria-hidden="true"><path fill="#E9A9BC" d="M50 88C22 66 4 50 4 28 4 13 15 3 29 3c10 0 17 6 21 14l-8 16 12 10-8 14 10 8-6 11z"/><path fill="#E9A9BC" d="M56 86l5-11-9-8 8-14-11-10 8-15c5-6 10-9 15-9 14 0 25 10 25 25 0 22-17 36-41 62z"/></svg><span>On va s'endormir à 21h30</span></button>
+    </div>
+    <div class="replies" aria-live="polite"></div>
+    <div class="next" hidden><button class="pill" type="button"><svg viewBox="0 0 100 92" aria-hidden="true"><use href="#hp" fill="#fff"/></svg>Question suivante</button></div>
+    <div class="likes"><svg viewBox="0 0 100 92" aria-hidden="true"><use href="#hp" fill="url(#g-red)"/></svg><span>Aimé par Sophia · défi officiellement lancé</span></div>
+   </article>
+  </section>
+
+  <!-- 7 · Question 7 (finale, retrouvailles) -->
+  <section class="screen quiz" id="s7" aria-labelledby="t7" data-emoji="✈️">
+   <article class="post">
+    <div class="post-head"><span class="av sm" aria-hidden="true">S</span><div><b>Sophia</b><span>à l'instant</span></div><span class="chip">Question finale</span></div>
+    <h2 class="q xs" id="t7">Bon sérieusement, c'est quand que je te vois parce que j'en ai marre&nbsp;?</h2>
+    <p class="q-hint">La distance ça commence à bien faire.</p>
+    <div class="answers">
+     <div class="row">
+      <button class="heart lg beat long" type="button" data-notif="J'ai trop hâte que tu sois enfin là, tu me manques fort 🥺💕" data-cert="sac déjà en préparation 🧳">
+       <svg viewBox="0 0 100 92" aria-hidden="true"><path class="h-fill" fill="url(#g-red)" d="M50 88C22 66 4 50 4 28 4 13 15 3 29 3c10 0 17 6 21 14 4-8 11-14 21-14 14 0 25 10 25 25 0 22-18 38-46 60z"/><ellipse cx="27" cy="21" rx="12" ry="7" transform="rotate(-28 27 21)" fill="#fff" opacity=".42"/><circle cx="16" cy="33" r="2.6" fill="#fff" opacity=".55"/></svg>
+       <span>Très vite, je prépare déjà mon sac 🧳❤️</span>
+      </button>
+      <button class="heart lg pink long" type="button" data-notif="Meilleure décision de ta journée, je compte les jours ! 😍" data-cert="billets en cours de réservation ✈️">
+       <svg viewBox="0 0 100 92" aria-hidden="true"><path class="h-fill" fill="url(#g-pink)" d="M50 88C22 66 4 50 4 28 4 13 15 3 29 3c10 0 17 6 21 14 4-8 11-14 21-14 14 0 25 10 25 25 0 22-18 38-46 60z"/><ellipse cx="27" cy="21" rx="12" ry="7" transform="rotate(-28 27 21)" fill="#fff" opacity=".6"/></svg>
+       <span>Je prends mes billets tout de suite ✈️🔥</span>
+      </button>
+     </div>
+     <button class="no" type="button" data-ico="🚨" data-alarm="ALERTE ROUGE ABSOLUE." data-sub="Réponse illégale, dépêche-toi de venir me voir !" data-ok="J'arrive, j'arrive"><svg viewBox="0 0 100 92" aria-hidden="true"><path fill="#E9A9BC" d="M50 88C22 66 4 50 4 28 4 13 15 3 29 3c10 0 17 6 21 14l-8 16 12 10-8 14 10 8-6 11z"/><path fill="#E9A9BC" d="M56 86l5-11-9-8 8-14-11-10 8-15c5-6 10-9 15-9 14 0 25 10 25 25 0 22-17 36-41 62z"/></svg><span>L'année prochaine peut-être…</span></button>
+    </div>
+    <div class="replies" aria-live="polite"></div>
+    <div class="next" hidden><button class="pill" type="button"><svg viewBox="0 0 100 92" aria-hidden="true"><use href="#hp" fill="#fff"/></svg>Voir mon résultat</button></div>
+    <div class="likes"><svg viewBox="0 0 100 92" aria-hidden="true"><use href="#hp" fill="url(#g-red)"/></svg><span>Sophia compte les jours (et les heures, et les minutes)</span></div>
+   </article>
+  </section>
+
+  <!-- 8 · Résultat -->
+  <section class="screen" id="s8" aria-labelledby="t8">
    <div class="result-top">
     <p class="eyebrow" style="margin-top:4px">Résultat officiel de Kimo</p>
-    <h2 id="t3">Analyse terminée</h2>
+    <h2 id="t8">Analyse terminée</h2>
    </div>
    <div class="meter">
     <svg viewBox="0 0 100 92" aria-hidden="true">
@@ -325,6 +462,7 @@ h1 em svg{position:absolute;left:0;right:0;bottom:-.18em;width:100%;height:.32em
      <dt>Délivré à</dt><dd id="cert-to">Karim, alias Kimo</dd>
      <dt>Par</dt><dd>Sophia</dd>
      <dt>Validité</dt><dd>pour toujours</dd>
+     <dt>Retrouvailles</dt><dd id="cert-when">très très vite</dd>
      <dt>Conditions</dt><dd>non échangeable, non remboursable</dd>
     </dl>
     <p class="sign">Sophia</p>
@@ -345,7 +483,7 @@ h1 em svg{position:absolute;left:0;right:0;bottom:-.18em;width:100%;height:.32em
 
 <div class="sheet" id="sheet" aria-live="polite">
  <svg class="h" viewBox="0 0 100 92" aria-hidden="true"><use href="#hp" fill="url(#g-red)"/></svg>
- <div><p id="sheet-txt"></p><small id="sheet-sub"></small></div>
+ <div><span class="from">Sophia · à l'instant</span><p id="sheet-txt"></p><small id="sheet-sub"></small></div>
 </div>
 
 <div class="alarm" id="alarm" role="alertdialog" aria-labelledby="alarm-txt" hidden>
@@ -384,7 +522,7 @@ function go(i){
   segs.forEach(function(s,k){s.classList.toggle("on",k<=i);});
   hideSheet();
   window.scrollTo(0,0);
-  if(i===3)runMeter();
+  if(i===screens.length-1)runMeter();
 }
 screens.forEach(function(s,k){s.inert=k!==0;});
 
@@ -413,7 +551,7 @@ function loop(){
   for(var i=parts.length-1;i>=0;i--){var p=parts[i];p.vx*=p.drag;p.vy=p.vy*p.drag+p.g;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;p.life++;
     var a=Math.max(0,1-p.life/p.ttl);if(a<=0||p.y>innerHeight+60){parts.splice(i,1);continue;}
     ctx.save();ctx.globalAlpha=Math.min(1,a*1.6);ctx.translate(p.x,p.y);ctx.rotate(p.r);
-    if(p.kiss){ctx.font=(p.s*1.6)+"px serif";ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText("💋",0,0);}
+    if(p.kiss){ctx.font=(p.s*1.6)+"px serif";ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText(p.emo||"💋",0,0);}
     else{ctx.scale(p.s,p.s);ctx.fillStyle=p.c;ctx.fill(HP);}
     ctx.restore();}
   if(parts.length){requestAnimationFrame(loop);}else{running=false;ctx.clearRect(0,0,innerWidth,innerHeight);}
@@ -422,7 +560,7 @@ function kick(){if(!running){running=true;requestAnimationFrame(loop);}}
 function burst(x,y,n,opt){opt=opt||{};if(reduce)n=Math.min(n,12);
   for(var i=0;i<n;i++){var ang=Math.random()*Math.PI*2,sp=(opt.speed||7)*(.35+Math.random());
     parts.push({x:x,y:y,vx:Math.cos(ang)*sp,vy:Math.sin(ang)*sp-(opt.up||3),g:.18,drag:.985,s:(opt.size||10)*(.6+Math.random()*.9),r:Math.random()*6,vr:(Math.random()-.5)*.2,
-      c:COLORS[i%COLORS.length],life:0,ttl:(opt.ttl||110)+Math.random()*40,kiss:opt.kiss&&Math.random()<.35});}
+      c:COLORS[i%COLORS.length],life:0,ttl:(opt.ttl||110)+Math.random()*40,kiss:opt.kiss&&Math.random()<.35,emo:opt.emoji});}
   kick();}
 function rain(ms){if(reduce)return;var end=performance.now()+ms;(function drop(){for(var i=0;i<4;i++)parts.push({x:Math.random()*innerWidth,y:-20,vx:(Math.random()-.5)*1.2,vy:2+Math.random()*2.5,g:.03,drag:.995,
   s:6+Math.random()*10,r:Math.random()*6,vr:(Math.random()-.5)*.08,c:COLORS[Math.floor(Math.random()*COLORS.length)],life:0,ttl:260});kick();if(performance.now()<end)setTimeout(drop,60);})();}
@@ -453,20 +591,26 @@ $("#join").addEventListener("click",function(e){var c=center(e.currentTarget);bu
 var noCount=0,bitCount=0,locked=false;
 var noSubs=["Réessaie, Kimo, je t'attends.","Réfléchis bien cette fois.","Tu vois le bouton « non » rétrécir ? C'est un signe.","Le gros cœur grossit. Je dis ça, je dis rien.","Ok, je vais faire comme si je n'avais rien vu."];
 var bitMsgs=["Tu arrêtes non ?","Non mais Kimo, tu arrêtes ?","Je fais semblant de pas avoir vu. Il reste un gros cœur juste à côté…"];
-var alarm=$("#alarm"),alarmT=0;
+var alarm=$("#alarm"),alarmT=0,alarmIco=alarm.querySelector(".ico");
+var ALARM={ico:alarmIco.textContent,txt:$("#alarm-txt").textContent,ok:$("#alarm-ok").textContent};
 function closeAlarm(){alarm.hidden=true;clearTimeout(alarmT);}
 $("#alarm-ok").addEventListener("click",closeAlarm);
 alarm.addEventListener("click",function(e){if(e.target===alarm)closeAlarm();});
-$("#no").addEventListener("click",function(){
-  noCount++;bubble($("#r1"),"Non","me");
-  $("#alarm-sub").textContent=noSubs[Math.min(noCount-1,noSubs.length-1)];
+/* alerte rouge drama : o = {ico, txt, sub, ok, ms} */
+function drama(o){
+  alarmIco.textContent=o.ico||ALARM.ico;$("#alarm-txt").textContent=o.txt||ALARM.txt;
+  $("#alarm-sub").textContent=o.sub||"";$("#alarm-ok").textContent=o.ok||ALARM.ok;
   alarm.hidden=false;var card=alarm.querySelector(".alarm-card");card.style.animation="none";void card.offsetWidth;card.style.animation="";
   $("#alarm-ok").focus({preventScroll:true});
-  clearTimeout(alarmT);alarmT=setTimeout(closeAlarm,4200);
-  $("#no").style.setProperty("--s",Math.max(.55,1-.11*noCount));
-  $("#lot").style.setProperty("--g",Math.min(1.3,1+.08*noCount));
+  clearTimeout(alarmT);alarmT=setTimeout(closeAlarm,o.ms||4200);
   var app=$("#app");app.classList.remove("quake");void app.offsetWidth;app.classList.add("quake");
   if(navigator.vibrate)try{navigator.vibrate([70,40,70,40,120]);}catch(e){}
+}
+$("#no").addEventListener("click",function(){
+  noCount++;bubble($("#r1"),"Non","me");
+  drama({sub:noSubs[Math.min(noCount-1,noSubs.length-1)]});
+  $("#no").style.setProperty("--s",Math.max(.55,1-.11*noCount));
+  $("#lot").style.setProperty("--g",Math.min(1.3,1+.08*noCount));
 });
 $("#bit").addEventListener("click",function(e){
   bubble($("#r1"),"Oui un peu","me");
@@ -505,6 +649,34 @@ $("#know").addEventListener("click",function(e){bubble($("#r2"),"Oui je sais","m
 $("#dunno").addEventListener("click",function(e){bubble($("#r2"),"J'en sais rien moi","me");showSheet("Je te le rappellerai chaque jour amour de ma vie","Promis, juré, craché (mais mignonnement).");var c=center(e.currentTarget);burst(c.x,c.y,40,{size:9});revealEnd();});
 $("#go-end").addEventListener("click",function(){go(3);});
 
+/* ---- questions 3 à 7 : cœur = notification mignonne, « non » = alerte rouge ---- */
+var CERT_WHEN=$("#cert-when").textContent,resets=[];
+function reveal(el){var r=el.getBoundingClientRect(),room=innerHeight-150;if(r.bottom>room)window.scrollBy({top:r.bottom-room,behavior:reduce?"auto":"smooth"});}
+screens.forEach(function(sec,idx){
+  if(!sec.classList.contains("quiz"))return;
+  var box=sec.querySelector(".replies"),next=sec.querySelector(".next"),no=sec.querySelector(".no"),emoji=sec.getAttribute("data-emoji"),
+      last=idx===screens.length-2,nos=0,nextT=0;
+  [].slice.call(sec.querySelectorAll(".heart")).forEach(function(b){
+    b.addEventListener("click",function(){
+      bubble(box,b.textContent.trim(),"me");
+      showSheet(b.getAttribute("data-notif"));
+      var c=center(b);burst(c.x,c.y,last?90:44,{size:9,kiss:!!emoji,emoji:emoji});
+      if(last)rain(2000);
+      b.classList.remove("wiggle");void b.offsetWidth;b.classList.add("wiggle");
+      if(b.hasAttribute("data-cert"))$("#cert-when").textContent=b.getAttribute("data-cert");
+      if(navigator.vibrate)try{navigator.vibrate(last?[30,60,30,60,200]:40);}catch(e){}
+      if(next.hidden){clearTimeout(nextT);nextT=setTimeout(function(){next.hidden=false;reveal(next);},reduce?0:900);}
+    });
+  });
+  no.addEventListener("click",function(){
+    nos++;bubble(box,no.textContent.trim(),"me");hideSheet();
+    drama({ico:no.getAttribute("data-ico"),txt:no.getAttribute("data-alarm"),sub:no.getAttribute("data-sub"),ok:no.getAttribute("data-ok"),ms:5200});
+    no.style.setProperty("--s",Math.max(.6,1-.1*nos));
+  });
+  next.querySelector("button").addEventListener("click",function(){go(idx+1);});
+  resets.push(function(){nos=0;clearTimeout(nextT);box.textContent="";next.hidden=true;no.style.removeProperty("--s");});
+});
+
 /* ---- résultat ---- */
 var meterDone=false;
 function runMeter(){
@@ -523,7 +695,8 @@ $("#kiss").addEventListener("click",function(e){kisses++;var c=center(e.currentT
   var b=e.currentTarget;b.classList.remove("wiggle");void b.offsetWidth;b.classList.add("wiggle");});
 $("#replay").addEventListener("click",function(){
   noCount=0;bitCount=0;kisses=0;$("#no").style.removeProperty("--s");$("#lot").style.removeProperty("--g");
-  $("#r1").textContent="";$("#r2").textContent="";$("#to-end").hidden=true;$("#kiss-count").textContent="Appuie pour faire pleuvoir des bisous";go(0);});
+  $("#r1").textContent="";$("#r2").textContent="";$("#to-end").hidden=true;$("#kiss-count").textContent="Appuie pour faire pleuvoir des bisous";
+  resets.forEach(function(f){f();});$("#cert-when").textContent=CERT_WHEN;go(0);});
 })();
 </script>
 </body>
